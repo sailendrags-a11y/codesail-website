@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing — CodeSail</title>
+    <meta name="description" content="Simple, transparent pricing for CodeSail AI Code Assistant.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        .pricing-page { padding: 100px 0 80px; text-align: center; }
+        .pricing-page h1 {
+            font-size: 52px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ffffff, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .pricing-page .subtitle {
+            color: #64748b;
+            font-size: 18px;
+            margin-bottom: 64px;
+        }
+        .pricing-grid-full {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto 80px;
+        }
+        .pricing-card-full {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 40px 32px;
+            position: relative;
+            text-align: left;
+            transition: all 0.3s;
+        }
+        .pricing-card-full:hover {
+            border-color: rgba(99,102,241,0.3);
+            transform: translateY(-4px);
+        }
+        .pricing-card-full.featured {
+            border-color: rgba(99,102,241,0.5);
+            background: rgba(99,102,241,0.07);
+        }
+        .plan-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 8px;
+        }
+        .plan-desc {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 24px;
+            min-height: 40px;
+        }
+        .plan-price {
+            font-size: 52px;
+            font-weight: 800;
+            color: #a5b4fc;
+            margin-bottom: 4px;
+        }
+        .plan-price span {
+            font-size: 16px;
+            font-weight: 400;
+            color: #64748b;
+        }
+        .plan-period {
+            color: #64748b;
+            font-size: 13px;
+            margin-bottom: 32px;
+        }
+        .plan-divider {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 24px;
+        }
+        .plan-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+        .plan-features li {
+            color: #94a3b8;
+            font-size: 14px;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .plan-features li.disabled { color: #475569; }
+        .subscribe-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+        .subscribe-btn.primary {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+        .subscribe-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99,102,241,0.4);
+        }
+        .subscribe-btn.outline {
+            background: transparent;
+            color: #a5b4fc;
+            border: 1px solid #3730a3;
+        }
+        .subscribe-btn.outline:hover { background: rgba(99,102,241,0.1); }
+        .popular-tag {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .faq { padding: 60px 0; max-width: 700px; margin: 0 auto; }
+        .faq h2 {
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #f1f5f9;
+        }
+        .faq-item {
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding: 20px 0;
+        }
+        .faq-item h4 { color: #f1f5f9; font-size: 16px; margin-bottom: 8px; }
+        .faq-item p { color: #64748b; font-size: 14px; line-height: 1.6; }
+        .install-steps {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 700px;
+            margin: 0 auto 80px;
+            text-align: left;
+        }
+        .install-steps h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+        .step-num {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .step-content h4 { color: #f1f5f9; font-size: 15px; margin-bottom: 4px; }
+        .step-content p { color: #64748b; font-size: 14px; }
+        .step-content code {
+            background: rgba(99,102,241,0.15);
+            color: #a5b4fc;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" style="display:flex;align-items:center;gap:8px;">
+                    <span class="logo">⛵</span>
+                    <span class="brand-name">CodeSail</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html#products">Products</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="docs.html">Docs</a>
+                <a href="https://github.com/sailendrags-a11y/ai-code-assistant" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pricing-page">
+        <div class="container">
+            <h1>Simple, Transparent Pricing</h1>
+            <p class="subtitle">Start free. Upgrade when you need more. Cancel anytime.</p>
+
+            <div class="pricing-grid-full">
+
+                <!-- Free Plan -->
+                <div class="pricing-card-full">
+                    <div class="plan-name">Free</div>
+                    <div class="plan-desc">Perfect for trying out CodeSail</div>
+                    <div class="plan-price">₹0<span>/mo</span></div>
+                    <div class="plan-period">Forever free</div>
+                    <hr class="plan-divider">
+                    <ul class="plan-features">
+                        <li>✅ 50 chat messages/month</li>
+                        <li>✅ 100 inline completions/month</li>
+                        <li>✅ All slash commands (/fix, /explain etc)</li>
+                        <li>✅ GitHub login</li>
+                        <li>✅ Context-aware (reads your files)</li>
+                        <li class="disabled">❌ Priority responses</li>
+                        <li class="disabled">❌ Unlimited usage</li>
+                        <li class="disabled">❌ Priority support</li>
+                    </ul>
+                    <button class="subscribe-btn outline" onclick="handleFreeSignup()">
+                        Get Started Free
+                    </button>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="pricing-card-full featured">
+                    <div class="popular-tag">Most Popular</div>
+                    <div class="plan-name">Pro</div>
+                    <div class="plan-desc">For developers who code every day</div>
+                    <div class="plan-price">₹499<span>/mo</span></div>
+                    <div class="plan-period">Billed monthly · Cancel anytime</div>
+                    <hr class="plan-divider">
+                    <ul class="plan-features">
+                        <li>✅ Unlimited chat messages</li>
+                        <li>✅ Unlimited inline completions</li>
+                        <li>✅ All slash commands (/fix, /explain etc)</li>
+                        <li>✅ GitHub login</li>
+                        <li>✅ Context-aware (reads your files)</li>
+                        <li>✅ Priority responses</li>
+                        <li>✅ Multi-file context (coming soon)</li>
+                        <li>✅ Priority support</li>
+                    </ul>
+                    <button class="subscribe-btn primary" onclick="handleProSubscription()">
+                        Start Pro — ₹499/month
+                    </button>
+                </div>
+
+                <!-- Annual Plan -->
+                <div class="pricing-card-full">
+                    <div class="plan-name">Pro Annual</div>
+                    <div class="plan-desc">Best value — save 2 months free</div>
+                    <div class="plan-price">₹4,990<span>/yr</span></div>
+                    <div class="plan-period">₹415/month · Save ₹1,000</div>
+                    <hr class="plan-divider">
+                    <ul class="plan-features">
+                        <li>✅ Everything in Pro</li>
+                        <li>✅ 2 months free</li>
+                        <li>✅ Priority support</li>
+                        <li>✅ Early access to new features</li>
+                        <li>✅ Multi-file context (coming soon)</li>
+                        <li>✅ Agent mode (coming soon)</li>
+                        <li>✅ Lock in current pricing forever</li>
+                        <li>✅ Invoice for business expenses</li>
+                    </ul>
+                    <button class="subscribe-btn primary" onclick="handleAnnualSubscription()">
+                        Start Annual — ₹4,990/year
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- How to Install -->
+            <div class="install-steps">
+                <h3>🚀 Get Started in 3 Steps</h3>
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <h4>Subscribe above</h4>
+                        <p>Choose your plan and complete payment via Razorpay — secure, instant.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h4>Install the VS Code extension</h4>
+                        <p>Search <code>CodeSail</code> in the VS Code Marketplace and click Install.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h4>Login with GitHub</h4>
+                        <p>Press <code>Cmd+Shift+P</code> → <code>AI: Login with GitHub</code> → done! Start coding with AI.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="faq">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <h4>Do I need my own Anthropic API key?</h4>
+                    <p>No — CodeSail handles all API calls on our end. Just login with GitHub and start using it immediately.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What AI model does CodeSail use?</h4>
+                    <p>We use Claude Sonnet 4.6 by Anthropic — one of the best models for code understanding and generation.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can I cancel anytime?</h4>
+                    <p>Yes — cancel from inside VS Code anytime. No questions asked. You keep access until the end of your billing period.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Is my code sent to your servers?</h4>
+                    <p>Only the code context you're actively working on is sent to process your request. We don't store your code.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What payment methods do you accept?</h4>
+                    <p>We accept all major credit/debit cards, UPI, net banking, and wallets via Razorpay.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 CodeSail. All rights reserved.</p>
+                <p>Built with ❤️ for developers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Replace these with your actual Razorpay Key ID and Plan IDs
+        const RAZORPAY_KEY_ID = 'rzp_test_YOUR_KEY_ID';
+        const PRO_PLAN_ID = 'plan_YOUR_PRO_PLAN_ID';
+        const ANNUAL_PLAN_ID = 'plan_YOUR_ANNUAL_PLAN_ID';
+        const BACKEND_URL = 'http://localhost:8000'; // Change to production URL
+
+        function handleFreeSignup() {
+            // Redirect to GitHub OAuth
+            window.location.href = `${BACKEND_URL}/auth/github/login`;
+        }
+
+        async function handleProSubscription() {
+            await initiateSubscription('pro', 49900, 'Pro Monthly');
+        }
+
+        async function handleAnnualSubscription() {
+            await initiateSubscription('annual', 499000, 'Pro Annual');
+        }
+
+        async function initiateSubscription(plan, amount, planName) {
+            try {
+                // Check if user is logged in
+                const token = localStorage.getItem('codesail_token');
+                if (!token) {
+                    // Redirect to GitHub login first
+                    localStorage.setItem('pending_plan', plan);
+                    window.location.href = `${BACKEND_URL}/auth/github/login`;
+                    return;
+                }
+
+                // Create subscription on backend
+                const response = await fetch(`${BACKEND_URL}/billing/subscribe`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+
+                // Open Razorpay checkout
+                const options = {
+                    key: RAZORPAY_KEY_ID,
+                    subscription_id: data.subscription_id,
+                    name: 'CodeSail',
+                    description: planName,
+                    image: '⛵',
+                    handler: async function(response) {
+                        // Verify payment on backend
+                        const verifyResponse = await fetch(`${BACKEND_URL}/billing/verify-payment`, {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': `Bearer ${token}`,
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                razorpay_payment_id: response.razorpay_payment_id,
+                                razorpay_subscription_id: response.razorpay_subscription_id,
+                                razorpay_signature: response.razorpay_signature
+                            })
+                        });
+
+                        if (verifyResponse.ok) {
+                            window.location.href = 'success.html';
+                        }
+                    },
+                    prefill: {
+                        name: '',
+                        email: ''
+                    },
+                    theme: { color: '#6366f1' }
+                };
+
+                const rzp = new Razorpay(options);
+                rzp.open();
+
+            } catch (error) {
+                alert('Something went wrong. Please try again.');
+                console.error(error);
+            }
+        }
+    </script>
+
+</body>
+</html>

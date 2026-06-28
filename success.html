@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to CodeSail! 🎉</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .success-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 24px;
+            background: radial-gradient(ellipse at 50% 30%, rgba(99,102,241,0.15) 0%, transparent 70%);
+        }
+        .success-card {
+            max-width: 600px;
+            width: 100%;
+        }
+        .success-emoji {
+            font-size: 80px;
+            margin-bottom: 24px;
+            display: block;
+        }
+        .success-card h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ffffff, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .success-card p {
+            color: #94a3b8;
+            font-size: 18px;
+            margin-bottom: 48px;
+            line-height: 1.7;
+        }
+        .steps-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 36px;
+            text-align: left;
+        }
+        .steps-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+        .step-num {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .step-content h4 {
+            color: #f1f5f9;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .step-content p { color: #64748b; font-size: 14px; line-height: 1.6; }
+        .step-content code {
+            background: rgba(99,102,241,0.15);
+            color: #a5b4fc;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-family: 'Courier New', monospace;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .marketplace-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+        .marketplace-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99,102,241,0.4);
+        }
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" style="display:flex;align-items:center;gap:8px;">
+                    <span class="logo">⛵</span>
+                    <span class="brand-name">CodeSail</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="success-page">
+        <div class="success-card">
+            <span class="success-emoji">🎉</span>
+            <h1>You're all set!</h1>
+            <p>Welcome to CodeSail Pro. Your subscription is active and you're ready to start coding with AI. Follow the steps below to get started in under 2 minutes.</p>
+
+            <div class="steps-card">
+                <h3>🚀 Get coding in 2 minutes</h3>
+
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <h4>Install the VS Code Extension</h4>
+                        <p>Open VS Code → Extensions panel → Search <code>CodeSail</code> → Click Install</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h4>Login with GitHub</h4>
+                        <p>Press <code>Cmd+Shift+P</code> → Type <code>AI: Login with GitHub</code> → Authorize → Paste your token</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h4>Open the AI Chat Panel</h4>
+                        <p>Press <code>Cmd+Shift+P</code> → Type <code>AI: Open Chat Assistant</code> → Start chatting!</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <h4>Try slash commands</h4>
+                        <p>Open any code file → Open chat → Type <code>/explain</code>, <code>/fix</code>, or <code>/improve</code></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="https://marketplace.visualstudio.com/items?itemName=sailendrags-a11y.ai-code-assistant" 
+                   class="marketplace-btn" target="_blank">
+                    📦 Install from Marketplace
+                </a>
+                <a href="docs.html" class="btn-secondary">
+                    📚 Read the Docs
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple confetti animation
+        function createConfetti() {
+            const colors = ['#6366f1', '#8b5cf6', '#a78bfa', '#c4b5fd', '#ffffff'];
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const el = document.createElement('div');
+                    el.style.cssText = `
+                        position: fixed;
+                        width: 8px;
+                        height: 8px;
+                        background: ${colors[Math.floor(Math.random() * colors.length)]};
+                        border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+                        top: -10px;
+                        left: ${Math.random() * 100}vw;
+                        opacity: 1;
+                        z-index: 999;
+                        pointer-events: none;
+                        transition: all ${2 + Math.random() * 2}s ease-out;
+                    `;
+                    document.body.appendChild(el);
+                    setTimeout(() => {
+                        el.style.top = '110vh';
+                        el.style.transform = `rotate(${Math.random() * 720}deg) translateX(${(Math.random() - 0.5) * 200}px)`;
+                        el.style.opacity = '0';
+                    }, 50);
+                    setTimeout(() => el.remove(), 4000);
+                }, i * 30);
+            }
+        }
+
+        // Run confetti on load
+        createConfetti();
+    </script>
+
+</body>
+</html>

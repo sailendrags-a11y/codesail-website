@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation — CodeSail</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .docs-layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 0;
+            min-height: 100vh;
+            padding-top: 65px;
+        }
+        .docs-sidebar {
+            position: fixed;
+            top: 65px;
+            left: 0;
+            width: 240px;
+            height: calc(100vh - 65px);
+            overflow-y: auto;
+            background: rgba(255,255,255,0.02);
+            border-right: 1px solid rgba(255,255,255,0.06);
+            padding: 32px 20px;
+        }
+        .docs-sidebar h4 {
+            font-size: 11px;
+            font-weight: 600;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+            margin-top: 24px;
+        }
+        .docs-sidebar h4:first-child { margin-top: 0; }
+        .docs-sidebar a {
+            display: block;
+            color: #64748b;
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            margin-bottom: 2px;
+            transition: all 0.2s;
+        }
+        .docs-sidebar a:hover, .docs-sidebar a.active {
+            color: #a5b4fc;
+            background: rgba(99,102,241,0.1);
+        }
+        .docs-content {
+            margin-left: 240px;
+            padding: 48px 64px;
+            max-width: 860px;
+        }
+        .docs-content h1 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ffffff, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .docs-content h2 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin: 48px 0 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .docs-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin: 28px 0 12px;
+        }
+        .docs-content p {
+            color: #94a3b8;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+        .docs-content ul {
+            color: #94a3b8;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+        .docs-content li { margin-bottom: 6px; }
+        .docs-content code {
+            background: rgba(99,102,241,0.15);
+            color: #a5b4fc;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-family: 'Courier New', monospace;
+        }
+        .docs-content pre {
+            background: #0d1117;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 16px 0 24px;
+        }
+        .docs-content pre code {
+            background: none;
+            color: #e2e8f0;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .callout {
+            background: rgba(99,102,241,0.08);
+            border: 1px solid rgba(99,102,241,0.2);
+            border-left: 3px solid #6366f1;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 20px 0;
+        }
+        .callout p { color: #a5b4fc; margin: 0; font-size: 14px; }
+        .command-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 24px;
+        }
+        .command-table th {
+            background: rgba(99,102,241,0.1);
+            color: #a5b4fc;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 10px 16px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .command-table td {
+            color: #94a3b8;
+            font-size: 14px;
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .command-table td:first-child { color: #a5b4fc; font-family: monospace; }
+        .badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge.free { background: rgba(34,197,94,0.15); color: #86efac; }
+        .badge.pro { background: rgba(99,102,241,0.15); color: #a5b4fc; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" style="display:flex;align-items:center;gap:8px;">
+                    <span class="logo">⛵</span>
+                    <span class="brand-name">CodeSail</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html#products">Products</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="docs.html" style="color:#a5b4fc;">Docs</a>
+                <a href="pricing.html" class="btn-nav">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="docs-layout">
+
+        <!-- Sidebar -->
+        <div class="docs-sidebar">
+            <h4>Getting Started</h4>
+            <a href="#installation" class="active">Installation</a>
+            <a href="#login">Login with GitHub</a>
+            <a href="#first-chat">Your First Chat</a>
+
+            <h4>Features</h4>
+            <a href="#chat-panel">Chat Panel</a>
+            <a href="#completions">Inline Completions</a>
+            <a href="#slash-commands">Slash Commands</a>
+            <a href="#context">Code Context</a>
+
+            <h4>Commands</h4>
+            <a href="#all-commands">All Commands</a>
+
+            <h4>Account</h4>
+            <a href="#subscription">Subscription</a>
+            <a href="#faq">FAQ</a>
+        </div>
+
+        <!-- Content -->
+        <div class="docs-content">
+
+            <h1>CodeSail Documentation</h1>
+            <p>Everything you need to get started with CodeSail AI Code Assistant — an AI-powered VS Code extension powered by Claude.</p>
+
+            <div class="callout">
+                <p>⚡ New here? Jump straight to <a href="#installation">Installation</a> and be coding with AI in under 2 minutes.</p>
+            </div>
+
+            <!-- Installation -->
+            <h2 id="installation">Installation</h2>
+            <h3>Requirements</h3>
+            <ul>
+                <li>VS Code version 1.80 or higher</li>
+                <li>A GitHub account (for login)</li>
+                <li>A CodeSail account — <a href="pricing.html" style="color:#a5b4fc;">sign up free</a></li>
+            </ul>
+
+            <h3>Install from VS Code Marketplace</h3>
+            <p>The easiest way to install CodeSail:</p>
+            <ul>
+                <li>Open VS Code</li>
+                <li>Press <code>Cmd+Shift+X</code> to open the Extensions panel</li>
+                <li>Search for <code>CodeSail</code></li>
+                <li>Click <strong>Install</strong></li>
+                <li>Reload VS Code when prompted</li>
+            </ul>
+
+            <h3>Install from Command Line</h3>
+            <pre><code>code --install-extension sailendrags-a11y.codesail</code></pre>
+
+            <!-- Login -->
+            <h2 id="login">Login with GitHub</h2>
+            <p>CodeSail uses GitHub OAuth for authentication — no passwords, no API keys to manage.</p>
+
+            <ul>
+                <li>Press <code>Cmd+Shift+P</code> to open the Command Palette</li>
+                <li>Type <code>AI: Login with GitHub</code> and press Enter</li>
+                <li>Your browser will open GitHub's authorization page</li>
+                <li>Click <strong>Authorize CodeSail</strong></li>
+                <li>Copy the access token from the page that opens</li>
+                <li>Paste it into the VS Code input box and press Enter</li>
+                <li>You'll see: <em>"✅ Logged in successfully!"</em></li>
+            </ul>
+
+            <div class="callout">
+                <p>🔒 Your session lasts 7 days. After that, just login again with the same steps.</p>
+            </div>
+
+            <!-- First Chat -->
+            <h2 id="first-chat">Your First Chat</h2>
+            <ul>
+                <li>Open any code file in VS Code</li>
+                <li>Press <code>Cmd+Shift+P</code> → type <code>AI: Open Chat Assistant</code></li>
+                <li>The chat panel opens on the right</li>
+                <li>Type any question and press Enter or click Send</li>
+                <li>Claude will respond with context from your open file!</li>
+            </ul>
+
+            <!-- Chat Panel -->
+            <h2 id="chat-panel">Chat Panel</h2>
+            <p>The chat panel is your main interface for talking to Claude about your code.</p>
+
+            <h3>Features</h3>
+            <ul>
+                <li><strong>Conversation history</strong> — Claude remembers your entire session. Ask follow-up questions naturally.</li>
+                <li><strong>Markdown rendering</strong> — Responses render with proper formatting, code highlighting, and tables.</li>
+                <li><strong>Copy button</strong> — Every code block has a one-click Copy button.</li>
+                <li><strong>Clear chat</strong> — Click the 🗑️ button to start a fresh conversation.</li>
+                <li><strong>Persistent history</strong> — Chat history survives switching between files.</li>
+            </ul>
+
+            <h3>Keyboard Shortcuts</h3>
+            <ul>
+                <li><code>Enter</code> — Send message</li>
+                <li><code>Shift+Enter</code> — New line (don't send)</li>
+            </ul>
+
+            <!-- Completions -->
+            <h2 id="completions">Inline Completions</h2>
+            <p>As you type code, CodeSail shows ghost text suggestions powered by Claude. These appear automatically after you pause typing.</p>
+
+            <h3>How it works</h3>
+            <ul>
+                <li>Start typing code in any file</li>
+                <li>Pause for ~600ms</li>
+                <li>Gray ghost text appears suggesting what comes next</li>
+                <li>Press <code>Tab</code> to accept the suggestion</li>
+                <li>Keep typing to dismiss and ignore it</li>
+            </ul>
+
+            <div class="callout">
+                <p>💡 Completions are context-aware — Claude sees both the code before AND after your cursor, so suggestions never duplicate existing code.</p>
+            </div>
+
+            <!-- Slash Commands -->
+            <h2 id="slash-commands">Slash Commands</h2>
+            <p>Type a slash command in the chat panel to trigger AI actions on your current file or selected code.</p>
+
+            <table class="command-table">
+                <tr>
+                    <th>Command</th>
+                    <th>What it does</th>
+                    <th>Plan</th>
+                </tr>
+                <tr>
+                    <td>/explain</td>
+                    <td>Explains your code in plain language — what it does, how it works, key patterns</td>
+                    <td><span class="badge free">Free</span></td>
+                </tr>
+                <tr>
+                    <td>/fix</td>
+                    <td>Finds and fixes bugs. Returns the complete corrected file + what was changed</td>
+                    <td><span class="badge free">Free</span></td>
+                </tr>
+                <tr>
+                    <td>/improve</td>
+                    <td>Suggests improvements for readability, performance, and best practices</td>
+                    <td><span class="badge free">Free</span></td>
+                </tr>
+                <tr>
+                    <td>/test</td>
+                    <td>Writes unit tests for your code — covers main cases, edge cases, and errors</td>
+                    <td><span class="badge pro">Pro</span></td>
+                </tr>
+                <tr>
+                    <td>/docs</td>
+                    <td>Writes documentation and comments — function descriptions, parameter explanations</td>
+                    <td><span class="badge pro">Pro</span></td>
+                </tr>
+            </table>
+
+            <h3>Tips for slash commands</h3>
+            <ul>
+                <li>Highlight specific code before typing a command to target just that selection</li>
+                <li>Add extra instructions: <code>/fix make sure to add type hints</code></li>
+                <li>Use <code>/explain</code> when reviewing someone else's code</li>
+                <li>Use <code>/test</code> before submitting a PR</li>
+            </ul>
+
+            <!-- Context -->
+            <h2 id="context">Code Context</h2>
+            <p>CodeSail automatically sends context from your editor with every message so Claude always knows what you're working on.</p>
+
+            <h3>What's included</h3>
+            <ul>
+                <li><strong>File name and language</strong> — always included</li>
+                <li><strong>Selected text</strong> — if you've highlighted code, only that is sent</li>
+                <li><strong>Full file contents</strong> — if no selection and file is under 10,000 characters</li>
+                <li><strong>First 5,000 characters</strong> — for larger files</li>
+            </ul>
+
+            <div class="callout">
+                <p>💡 Pro tip: Highlight just the function or block you want to discuss before typing your message — this gives Claude the most focused context.</p>
+            </div>
+
+            <!-- All Commands -->
+            <h2 id="all-commands">All VS Code Commands</h2>
+            <p>Access all CodeSail commands via <code>Cmd+Shift+P</code>:</p>
+
+            <table class="command-table">
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>AI: Open Chat Assistant</td>
+                    <td>Opens the chat panel</td>
+                </tr>
+                <tr>
+                    <td>AI: Login with GitHub</td>
+                    <td>Authenticates with your GitHub account</td>
+                </tr>
+                <tr>
+                    <td>AI: Logout</td>
+                    <td>Signs you out and clears your session</td>
+                </tr>
+                <tr>
+                    <td>AI: Check Login Status</td>
+                    <td>Shows your current login status and plan</td>
+                </tr>
+                <tr>
+                    <td>Set Anthropic API Key</td>
+                    <td>Alternative: use your own Anthropic key directly</td>
+                </tr>
+            </table>
+
+            <!-- Subscription -->
+            <h2 id="subscription">Subscription</h2>
+            <h3>Check your plan</h3>
+            <p>Press <code>Cmd+Shift+P</code> → <code>AI: Check Login Status</code> — this shows your current plan (free or pro).</p>
+
+            <h3>Upgrade to Pro</h3>
+            <p>Visit <a href="pricing.html" style="color:#a5b4fc;">codesail.in/pricing</a> to upgrade your plan.</p>
+
+            <h3>Cancel subscription</h3>
+            <p>Press <code>Cmd+Shift+P</code> → <code>AI: Cancel Subscription</code> — or email us at <a href="mailto:hello@codesail.in" style="color:#a5b4fc;">hello@codesail.in</a>.</p>
+
+            <!-- FAQ -->
+            <h2 id="faq">FAQ</h2>
+
+            <h3>Do I need my own Anthropic API key?</h3>
+            <p>No — CodeSail handles all API calls. Just login with GitHub and start using it.</p>
+
+            <h3>Is my code stored on your servers?</h3>
+            <p>No — we only process your code to generate responses. We don't store your code.</p>
+
+            <h3>What AI model does CodeSail use?</h3>
+            <p>Claude Sonnet 4.6 by Anthropic — one of the best models for code understanding.</p>
+
+            <h3>The extension stopped working — what do I do?</h3>
+            <ul>
+                <li>Check <code>Cmd+Shift+P</code> → <code>AI: Check Login Status</code></li>
+                <li>If session expired, login again with <code>AI: Login with GitHub</code></li>
+                <li>Check View → Output → "AI Code Assistant" for error logs</li>
+                <li>Email <a href="mailto:hello@codesail.in" style="color:#a5b4fc;">hello@codesail.in</a> with the log output</li>
+            </ul>
+
+            <h3>How do I report a bug?</h3>
+            <p>Open an issue on <a href="https://github.com/sailendrags-a11y/ai-code-assistant/issues" style="color:#a5b4fc;">GitHub</a> or email <a href="mailto:hello@codesail.in" style="color:#a5b4fc;">hello@codesail.in</a>.</p>
+
+        </div>
+    </div>
+
+</body>
+</html>
