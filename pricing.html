@@ -376,7 +376,9 @@
                 if (!token) {
                     // Redirect to GitHub login first
                     localStorage.setItem('pending_plan', plan);
-                    window.location.href = `${BACKEND_URL}/auth/github/login`;
+                    const loginRes = await fetch(`${BACKEND_URL}/auth/github/login`);
+                    const loginData = await loginRes.json();
+                    window.location.href = loginData.url;
                     return;
                 }
 
