@@ -213,8 +213,10 @@ a { text-decoration: none; color: inherit; }
 
 .products-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 24px;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .product-card {
