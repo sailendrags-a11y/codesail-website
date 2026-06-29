@@ -28,6 +28,7 @@ a { text-decoration: none; color: inherit; }
     transition: all 0.2s;
     border: none;
     cursor: pointer;
+    text-align: center;
 }
 .btn-primary:hover {
     transform: translateY(-2px);
@@ -45,6 +46,7 @@ a { text-decoration: none; color: inherit; }
     border: 1px solid #3730a3;
     transition: all 0.2s;
     cursor: pointer;
+    text-align: center;
 }
 .btn-secondary:hover {
     background: rgba(99, 102, 241, 0.1);
@@ -61,6 +63,7 @@ a { text-decoration: none; color: inherit; }
     font-size: 15px;
     border: 1px solid rgba(255,255,255,0.3);
     transition: all 0.2s;
+    text-align: center;
 }
 .btn-secondary-light:hover { background: rgba(255,255,255,0.1); }
 
@@ -80,7 +83,7 @@ a { text-decoration: none; color: inherit; }
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(10, 10, 15, 0.9);
+    background: rgba(10, 10, 15, 0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255,255,255,0.08);
     padding: 16px 0;
@@ -121,6 +124,36 @@ a { text-decoration: none; color: inherit; }
     transition: color 0.2s;
 }
 .nav-links a:hover { color: #e2e8f0; }
+
+/* Hamburger menu button */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+}
+.nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #e2e8f0;
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+/* Mobile menu open state */
+.nav-toggle.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+.nav-toggle.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
 
 /* ── Hero ─────────────────────────────────────────────────────────────────── */
 .hero {
@@ -164,6 +197,7 @@ a { text-decoration: none; color: inherit; }
     gap: 16px;
     justify-content: center;
     margin-bottom: 60px;
+    flex-wrap: wrap;
 }
 
 .hero-stats {
@@ -172,6 +206,7 @@ a { text-decoration: none; color: inherit; }
     justify-content: center;
     padding-top: 40px;
     border-top: 1px solid rgba(255,255,255,0.08);
+    flex-wrap: wrap;
 }
 
 .stat { text-align: center; }
@@ -238,8 +273,6 @@ a { text-decoration: none; color: inherit; }
     border-color: rgba(99, 102, 241, 0.4);
     background: rgba(99, 102, 241, 0.06);
 }
-
-.product-card.coming-soon { opacity: 0.8; }
 
 .product-badge {
     display: inline-block;
@@ -422,6 +455,7 @@ a { text-decoration: none; color: inherit; }
     display: flex;
     gap: 16px;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 /* ── Footer ───────────────────────────────────────────────────────────────── */
@@ -472,4 +506,166 @@ a { text-decoration: none; color: inherit; }
     border-top: 1px solid rgba(255,255,255,0.06);
     color: #475569;
     font-size: 13px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE DESIGN — Tablet (max 768px) and Mobile (max 480px)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Tablet (768px and below) ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+    /* Navbar — show hamburger, hide links */
+    .nav-toggle { display: flex; }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 15, 0.98);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        flex-direction: column;
+        padding: 24px;
+        gap: 20px;
+        backdrop-filter: blur(12px);
+    }
+
+    .nav-links.open { display: flex; }
+
+    .nav-links a {
+        font-size: 16px;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        width: 100%;
+    }
+
+    .nav-links a:last-child { border-bottom: none; }
+
+    .btn-nav {
+        width: 100%;
+        text-align: center;
+        padding: 12px 20px;
+    }
+
+    /* Hero */
+    .hero { padding: 60px 0 48px; }
+
+    .hero-title { font-size: 40px; }
+
+    .hero-subtitle { font-size: 16px; }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .hero-actions a {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .hero-stats { gap: 24px; }
+
+    /* Section headers */
+    .section-header h2 { font-size: 30px; }
+    .section-header p { font-size: 15px; }
+
+    /* Features — 2 columns on tablet */
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Pricing grid — stack to 1 column */
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+    }
+
+    /* Pricing card spacing for popular badge */
+    .pricing-card.featured { margin-top: 16px; }
+
+    /* CTA */
+    .cta h2 { font-size: 30px; }
+
+    .cta-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-actions a {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    /* Footer — 2 columns */
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+}
+
+/* ── Mobile (480px and below) ─────────────────────────────────────────────── */
+@media (max-width: 480px) {
+
+    .container { padding: 0 16px; }
+
+    /* Hero */
+    .hero { padding: 48px 0 40px; }
+
+    .hero-title { font-size: 32px; }
+
+    .hero-subtitle { font-size: 15px; }
+
+    .hero-stats {
+        gap: 16px;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .stat-number { font-size: 18px; }
+
+    /* Section headers */
+    .section-header { margin-bottom: 36px; }
+    .section-header h2 { font-size: 26px; }
+
+    /* Features — 1 column on mobile */
+    .features-grid { grid-template-columns: 1fr; }
+
+    .features { padding: 48px 0; }
+
+    /* Products */
+    .products { padding: 48px 0; }
+    .product-card { padding: 24px; }
+
+    /* Pricing */
+    .pricing-preview { padding: 48px 0; }
+    .pricing-card { padding: 24px; }
+    .price { font-size: 40px; }
+
+    /* CTA */
+    .cta { padding: 48px 0; }
+    .cta h2 { font-size: 26px; }
+
+    /* Footer */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .footer { padding: 40px 0 24px; }
 }
