@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing — CodeSail</title>
-    <meta name="description" content="Simple, transparent pricing for CodeSail AI Code Assistant.">
+    <meta name="description" content="Simple, transparent pricing for CodeSail AI Code Assistant. Pay-as-you-go with prepaid credits.">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -18,23 +18,82 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .pricing-page .subtitle {
-            color: #64748b;
-            font-size: 18px;
-            margin-bottom: 64px;
+        .pricing-page .subtitle { color: #64748b; font-size: 18px; margin-bottom: 40px; }
+
+        /* Toggle Row */
+        .toggle-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
         }
+        .toggle-group {
+            display: flex;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 100px;
+            padding: 4px;
+        }
+        .toggle-btn {
+            padding: 8px 20px;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+            background: transparent;
+            color: #64748b;
+        }
+        .toggle-btn.active {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+        .save-badge {
+            background: rgba(34,197,94,0.15);
+            color: #22c55e;
+            border: 1px solid rgba(34,197,94,0.3);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Credit info bar */
+        .credit-info {
+            background: rgba(99,102,241,0.08);
+            border: 1px solid rgba(99,102,241,0.2);
+            border-radius: 12px;
+            padding: 16px 24px;
+            max-width: 700px;
+            margin: 0 auto 48px;
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+        .credit-info-item { text-align: center; }
+        .credit-info-item .val { color: #a5b4fc; font-size: 18px; font-weight: 700; }
+        .credit-info-item .lbl { color: #64748b; font-size: 12px; margin-top: 2px; }
+
+        /* Pricing Grid */
         .pricing-grid-full {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 24px;
-            max-width: 1000px;
-            margin: 0 auto 80px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto 48px;
         }
+        @media (max-width: 900px) { .pricing-grid-full { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 600px) { .pricing-grid-full { grid-template-columns: 1fr; } }
+
         .pricing-card-full {
             background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 16px;
-            padding: 40px 32px;
+            padding: 32px 24px;
             position: relative;
             text-align: left;
             transition: all 0.3s;
@@ -47,58 +106,37 @@
             border-color: rgba(99,102,241,0.5);
             background: rgba(99,102,241,0.07);
         }
-        .plan-name {
-            font-size: 20px;
-            font-weight: 700;
-            color: #f1f5f9;
-            margin-bottom: 8px;
+        .popular-tag {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
         }
-        .plan-desc {
-            color: #64748b;
-            font-size: 14px;
-            margin-bottom: 24px;
-            min-height: 40px;
-        }
-        .plan-price {
-            font-size: 52px;
-            font-weight: 800;
-            color: #a5b4fc;
-            margin-bottom: 4px;
-        }
-        .plan-price span {
-            font-size: 16px;
-            font-weight: 400;
-            color: #64748b;
-        }
-        .plan-period {
-            color: #64748b;
-            font-size: 13px;
-            margin-bottom: 32px;
-        }
-        .plan-divider {
-            border: none;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            margin-bottom: 24px;
-        }
-        .plan-features {
-            list-style: none;
-            margin-bottom: 32px;
-        }
-        .plan-features li {
-            color: #94a3b8;
-            font-size: 14px;
-            padding: 8px 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .plan-features li.disabled { color: #475569; }
+        .plan-name { font-size: 18px; font-weight: 700; color: #f1f5f9; margin-bottom: 6px; }
+        .plan-credits { color: #a5b4fc; font-size: 28px; font-weight: 800; margin-bottom: 2px; }
+        .plan-credits span { font-size: 14px; font-weight: 400; color: #64748b; }
+        .plan-price { font-size: 36px; font-weight: 800; color: #f1f5f9; margin: 12px 0 4px; }
+        .plan-price span { font-size: 14px; font-weight: 400; color: #64748b; }
+        .plan-original { color: #475569; font-size: 13px; text-decoration: line-through; margin-bottom: 4px; }
+        .plan-saving { color: #22c55e; font-size: 12px; font-weight: 600; margin-bottom: 20px; }
+        .plan-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 20px 0; }
+        .plan-features { list-style: none; margin-bottom: 24px; }
+        .plan-features li { color: #94a3b8; font-size: 13px; padding: 6px 0; display: flex; align-items: center; gap: 8px; }
+        .chat-count { color: #f1f5f9; font-weight: 700; }
+
         .subscribe-btn {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             border-radius: 8px;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             cursor: pointer;
             border: none;
             transition: all 0.2s;
@@ -117,33 +155,21 @@
             border: 1px solid #3730a3;
         }
         .subscribe-btn.outline:hover { background: rgba(99,102,241,0.1); }
-        .popular-tag {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: white;
-            padding: 4px 16px;
-            border-radius: 100px;
-            font-size: 12px;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-        .faq { padding: 60px 0; max-width: 700px; margin: 0 auto; }
-        .faq h2 {
-            font-size: 32px;
-            font-weight: 700;
+
+        /* Free tier */
+        .free-tier {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 24px 32px;
+            max-width: 500px;
+            margin: 0 auto 64px;
             text-align: center;
-            margin-bottom: 40px;
-            color: #f1f5f9;
         }
-        .faq-item {
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            padding: 20px 0;
-        }
-        .faq-item h4 { color: #f1f5f9; font-size: 16px; margin-bottom: 8px; }
-        .faq-item p { color: #64748b; font-size: 14px; line-height: 1.6; }
+        .free-tier h3 { color: #f1f5f9; font-size: 18px; margin-bottom: 8px; }
+        .free-tier p { color: #64748b; font-size: 14px; margin-bottom: 16px; }
+
+        /* Install steps */
         .install-steps {
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.06);
@@ -153,31 +179,15 @@
             margin: 0 auto 80px;
             text-align: left;
         }
-        .install-steps h3 {
-            font-size: 22px;
-            font-weight: 700;
-            color: #f1f5f9;
-            margin-bottom: 24px;
-            text-align: center;
-        }
-        .step {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 20px;
-            align-items: flex-start;
-        }
+        .install-steps h3 { font-size: 22px; font-weight: 700; color: #f1f5f9; margin-bottom: 24px; text-align: center; }
+        .step { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
         .step-num {
             background: linear-gradient(135deg, #6366f1, #8b5cf6);
             color: white;
-            width: 28px;
-            height: 28px;
+            width: 28px; height: 28px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            font-weight: 700;
-            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; font-weight: 700; flex-shrink: 0;
         }
         .step-content h4 { color: #f1f5f9; font-size: 15px; margin-bottom: 4px; }
         .step-content p { color: #64748b; font-size: 14px; }
@@ -188,6 +198,12 @@
             border-radius: 4px;
             font-size: 13px;
         }
+
+        .faq { padding: 60px 0; max-width: 700px; margin: 0 auto; }
+        .faq h2 { font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 40px; color: #f1f5f9; }
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.08); padding: 20px 0; }
+        .faq-item h4 { color: #f1f5f9; font-size: 16px; margin-bottom: 8px; }
+        .faq-item p { color: #64748b; font-size: 14px; line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -211,78 +227,55 @@
 
     <section class="pricing-page">
         <div class="container">
-            <h1>Simple, Transparent Pricing</h1>
-            <p class="subtitle">Start free. Upgrade when you need more. Cancel anytime.</p>
+            <h1>Pay Only For What You Use</h1>
+            <p class="subtitle">Prepaid credits. No subscriptions. No surprise bills.</p>
 
-            <div class="pricing-grid-full">
-
-                <!-- Free Plan -->
-                <div class="pricing-card-full">
-                    <div class="plan-name">Free</div>
-                    <div class="plan-desc">Perfect for trying out CodeSail</div>
-                    <div class="plan-price">₹0<span>/mo</span></div>
-                    <div class="plan-period">Forever free</div>
-                    <hr class="plan-divider">
-                    <ul class="plan-features">
-                        <li>✅ 50 chat messages/month</li>
-                        <li>✅ 100 inline completions/month</li>
-                        <li>✅ All slash commands (/fix, /explain etc)</li>
-                        <li>✅ GitHub login</li>
-                        <li>✅ Context-aware (reads your files)</li>
-                        <li class="disabled">❌ Priority responses</li>
-                        <li class="disabled">❌ Unlimited usage</li>
-                        <li class="disabled">❌ Priority support</li>
-                    </ul>
-                    <button class="subscribe-btn outline" onclick="handleFreeSignup()">
-                        Get Started Free
-                    </button>
+            <!-- Toggle Row -->
+            <div class="toggle-row">
+                <!-- Currency Toggle -->
+                <div class="toggle-group">
+                    <button class="toggle-btn active" id="btn-inr" onclick="setCurrency('inr')">🇮🇳 India (₹)</button>
+                    <button class="toggle-btn" id="btn-usd" onclick="setCurrency('usd')">🌍 Global ($)</button>
                 </div>
-
-                <!-- Pro Plan -->
-                <div class="pricing-card-full featured">
-                    <div class="popular-tag">Most Popular</div>
-                    <div class="plan-name">Pro</div>
-                    <div class="plan-desc">For developers who code every day</div>
-                    <div class="plan-price">₹499<span>/mo</span></div>
-                    <div class="plan-period">Billed monthly · Cancel anytime</div>
-                    <hr class="plan-divider">
-                    <ul class="plan-features">
-                        <li>✅ Unlimited chat messages</li>
-                        <li>✅ Unlimited inline completions</li>
-                        <li>✅ All slash commands (/fix, /explain etc)</li>
-                        <li>✅ GitHub login</li>
-                        <li>✅ Context-aware (reads your files)</li>
-                        <li>✅ Priority responses</li>
-                        <li>✅ Multi-file context (coming soon)</li>
-                        <li>✅ Priority support</li>
-                    </ul>
-                    <button class="subscribe-btn primary" onclick="handleProSubscription()">
-                        Start Pro — ₹499/month
-                    </button>
+                <!-- Billing Toggle -->
+                <div class="toggle-group">
+                    <button class="toggle-btn active" id="btn-onetime" onclick="setBilling('onetime')">One-time</button>
+                    <button class="toggle-btn" id="btn-monthly" onclick="setBilling('monthly')">Monthly</button>
+                    <button class="toggle-btn" id="btn-annual" onclick="setBilling('annual')">Annual</button>
                 </div>
+                <div class="save-badge" id="save-badge" style="display:none">🎉 Save 20% on Annual</div>
+            </div>
 
-                <!-- Annual Plan -->
-                <div class="pricing-card-full">
-                    <div class="plan-name">Pro Annual</div>
-                    <div class="plan-desc">Best value — save 2 months free</div>
-                    <div class="plan-price">₹4,990<span>/yr</span></div>
-                    <div class="plan-period">₹415/month · Save ₹1,000</div>
-                    <hr class="plan-divider">
-                    <ul class="plan-features">
-                        <li>✅ Everything in Pro</li>
-                        <li>✅ 2 months free</li>
-                        <li>✅ Priority support</li>
-                        <li>✅ Early access to new features</li>
-                        <li>✅ Multi-file context (coming soon)</li>
-                        <li>✅ Agent mode (coming soon)</li>
-                        <li>✅ Lock in current pricing forever</li>
-                        <li>✅ Invoice for business expenses</li>
-                    </ul>
-                    <button class="subscribe-btn primary" onclick="handleAnnualSubscription()">
-                        Start Annual — ₹4,990/year
-                    </button>
+            <!-- Credit Info Bar -->
+            <div class="credit-info">
+                <div class="credit-info-item">
+                    <div class="val">28 credits</div>
+                    <div class="lbl">per chat message</div>
                 </div>
+                <div class="credit-info-item">
+                    <div class="val">6 credits</div>
+                    <div class="lbl">per completion</div>
+                </div>
+                <div class="credit-info-item">
+                    <div class="val">100 credits</div>
+                    <div class="lbl">free on signup</div>
+                </div>
+                <div class="credit-info-item">
+                    <div class="val">~3 chats</div>
+                    <div class="lbl">free to start</div>
+                </div>
+            </div>
 
+            <!-- Pricing Cards -->
+            <div class="pricing-grid-full" id="pricing-grid">
+                <!-- Cards injected by JS -->
+            </div>
+
+            <!-- Free Tier -->
+            <div class="free-tier">
+                <h3>🎁 Free — 100 Credits on Signup</h3>
+                <p>Sign up with GitHub and get 100 free credits instantly — no credit card required. That's ~3 chat messages to try it out.</p>
+                <button class="subscribe-btn outline" onclick="handleFreeSignup()">Get Started Free</button>
             </div>
 
             <!-- How to Install -->
@@ -291,22 +284,22 @@
                 <div class="step">
                     <div class="step-num">1</div>
                     <div class="step-content">
-                        <h4>Subscribe above</h4>
-                        <p>Choose your plan and complete payment via Razorpay — secure, instant.</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-num">2</div>
-                    <div class="step-content">
                         <h4>Install the VS Code extension</h4>
                         <p>Search <code>CodeSail</code> in the VS Code Marketplace and click Install.</p>
                     </div>
                 </div>
                 <div class="step">
-                    <div class="step-num">3</div>
+                    <div class="step-num">2</div>
                     <div class="step-content">
                         <h4>Login with GitHub</h4>
-                        <p>Press <code>Cmd+Shift+P</code> → <code>AI: Login with GitHub</code> → done! Start coding with AI.</p>
+                        <p>Press <code>Cmd+Shift+P</code> → <code>AI: Login with GitHub</code> — get 100 free credits instantly.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h4>Buy credits when you need more</h4>
+                        <p>Top up anytime. Credits never expire. No subscriptions.</p>
                     </div>
                 </div>
             </div>
@@ -315,16 +308,20 @@
             <div class="faq">
                 <h2>Frequently Asked Questions</h2>
                 <div class="faq-item">
+                    <h4>Do credits expire?</h4>
+                    <p>No — your credits never expire. Buy once, use whenever you want.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What's the difference between one-time, monthly, and annual?</h4>
+                    <p>One-time: buy a credit pack once, no recurring charges. Monthly: auto-renews every month for convenience. Annual: auto-renews yearly with 20% savings vs monthly.</p>
+                </div>
+                <div class="faq-item">
                     <h4>Do I need my own Anthropic API key?</h4>
-                    <p>No — CodeSail handles all API calls on our end. Just login with GitHub and start using it immediately.</p>
+                    <p>No — CodeSail handles all API calls on our end. Just login with GitHub and start using it.</p>
                 </div>
                 <div class="faq-item">
                     <h4>What AI model does CodeSail use?</h4>
                     <p>We use Claude Sonnet 4.6 by Anthropic — one of the best models for code understanding and generation.</p>
-                </div>
-                <div class="faq-item">
-                    <h4>Can I cancel anytime?</h4>
-                    <p>Yes — cancel from inside VS Code anytime. No questions asked. You keep access until the end of your billing period.</p>
                 </div>
                 <div class="faq-item">
                     <h4>Is my code sent to your servers?</h4>
@@ -332,7 +329,7 @@
                 </div>
                 <div class="faq-item">
                     <h4>What payment methods do you accept?</h4>
-                    <p>We accept all major credit/debit cards, UPI, net banking, and wallets via Razorpay.</p>
+                    <p>India: UPI, cards, net banking, wallets via Razorpay. Global: coming soon.</p>
                 </div>
             </div>
         </div>
@@ -349,90 +346,112 @@
     </footer>
 
     <script>
-        // Replace these with your actual Razorpay Key ID and Plan IDs
-        const RAZORPAY_KEY_ID = 'rzp_test_YOUR_KEY_ID';
-        const PRO_PLAN_ID = 'plan_YOUR_PRO_PLAN_ID';
-        const ANNUAL_PLAN_ID = 'plan_YOUR_ANNUAL_PLAN_ID';
         const BACKEND_URL = 'https://sail-backend-production-154d.up.railway.app';
+        const RAZORPAY_KEY_ID = 'rzp_test_YOUR_KEY_ID';
+
+        let currency = 'inr';
+        let billing = 'onetime';
+
+        const packs = {
+            inr: {
+                onetime: [
+                    { name: 'Starter', credits: 2990, price: 299, chats: 106 },
+                    { name: 'Popular', credits: 4990, price: 499, chats: 178, featured: true },
+                    { name: 'Pro', credits: 7990, price: 799, chats: 285 },
+                    { name: 'Power', credits: 14990, price: 1499, chats: 535 },
+                ],
+                monthly: [
+                    { name: 'Starter', credits: 2990, price: 299, chats: 106 },
+                    { name: 'Popular', credits: 4990, price: 499, chats: 178, featured: true },
+                    { name: 'Pro', credits: 7990, price: 799, chats: 285 },
+                    { name: 'Power', credits: 14990, price: 1499, chats: 535 },
+                ],
+                annual: [
+                    { name: 'Starter', credits: 2990, price: 239, originalPrice: 299, chats: 106 },
+                    { name: 'Popular', credits: 4990, price: 399, originalPrice: 499, chats: 178, featured: true },
+                    { name: 'Pro', credits: 7990, price: 639, originalPrice: 799, chats: 285 },
+                    { name: 'Power', credits: 14990, price: 1199, originalPrice: 1499, chats: 535 },
+                ],
+            },
+            usd: {
+                onetime: [
+                    { name: 'Starter', credits: 4158, price: 4.99, chats: 148 },
+                    { name: 'Popular', credits: 8325, price: 9.99, chats: 297, featured: true },
+                    { name: 'Pro', credits: 12490, price: 14.99, chats: 446 },
+                    { name: 'Power', credits: 16658, price: 19.99, chats: 595 },
+                ],
+                monthly: [
+                    { name: 'Starter', credits: 4158, price: 4.99, chats: 148 },
+                    { name: 'Popular', credits: 8325, price: 9.99, chats: 297, featured: true },
+                    { name: 'Pro', credits: 12490, price: 14.99, chats: 446 },
+                    { name: 'Power', credits: 16658, price: 19.99, chats: 595 },
+                ],
+                annual: [
+                    { name: 'Starter', credits: 4158, price: 3.99, originalPrice: 4.99, chats: 148 },
+                    { name: 'Popular', credits: 8325, price: 7.99, originalPrice: 9.99, chats: 297, featured: true },
+                    { name: 'Pro', credits: 12490, price: 11.99, originalPrice: 14.99, chats: 446 },
+                    { name: 'Power', credits: 16658, price: 15.99, originalPrice: 19.99, chats: 595 },
+                ],
+            }
+        };
+
+        function setCurrency(c) {
+            currency = c;
+            document.getElementById('btn-inr').classList.toggle('active', c === 'inr');
+            document.getElementById('btn-usd').classList.toggle('active', c === 'usd');
+            renderCards();
+        }
+
+        function setBilling(b) {
+            billing = b;
+            document.getElementById('btn-onetime').classList.toggle('active', b === 'onetime');
+            document.getElementById('btn-monthly').classList.toggle('active', b === 'monthly');
+            document.getElementById('btn-annual').classList.toggle('active', b === 'annual');
+            document.getElementById('save-badge').style.display = b === 'annual' ? 'block' : 'none';
+            renderCards();
+        }
+
+        function renderCards() {
+            const grid = document.getElementById('pricing-grid');
+            const sym = currency === 'inr' ? '₹' : '$';
+            const period = billing === 'monthly' ? '/mo' : billing === 'annual' ? '/mo billed annually' : '';
+            const currentPacks = packs[currency][billing];
+
+            grid.innerHTML = currentPacks.map(pack => `
+                <div class="pricing-card-full ${pack.featured ? 'featured' : ''}">
+                    ${pack.featured ? '<div class="popular-tag">⭐ Most Popular</div>' : ''}
+                    <div class="plan-name">${pack.name}</div>
+                    <div class="plan-credits">${pack.credits.toLocaleString()} <span>credits</span></div>
+                    <div class="plan-price">${sym}${pack.price}<span>${period}</span></div>
+                    ${pack.originalPrice ? `<div class="plan-original">${sym}${pack.originalPrice}${period}</div>` : '<div style="height:20px"></div>'}
+                    ${pack.originalPrice ? `<div class="plan-saving">🎉 Save 20%</div>` : '<div style="height:20px"></div>'}
+                    <hr class="plan-divider">
+                    <ul class="plan-features">
+                        <li>✅ <span class="chat-count">~${pack.chats} chat messages</span></li>
+                        <li>✅ All slash commands</li>
+                        <li>✅ Inline completions</li>
+                        <li>✅ Credits never expire</li>
+                        <li>✅ No auto-charges after one-time</li>
+                    </ul>
+                    <button class="subscribe-btn primary" onclick="handleBuyCredits('${pack.name}', ${pack.price}, ${pack.credits})">
+                        Buy ${pack.name} — ${sym}${pack.price}
+                    </button>
+                </div>
+            `).join('');
+        }
 
         function handleFreeSignup() {
-            // Redirect to GitHub OAuth
-            window.location.href = `${BACKEND_URL}/auth/github/login`;
+            fetch(`${BACKEND_URL}/auth/github/login`)
+                .then(r => r.json())
+                .then(data => { window.location.href = data.url; });
         }
 
-        async function handleProSubscription() {
-            await initiateSubscription('pro', 49900, 'Pro Monthly');
+        async function handleBuyCredits(packName, price, credits) {
+            alert(`💳 Payment coming soon!\n\nPack: ${packName}\nCredits: ${credits.toLocaleString()}\n\nRazorpay integration will be wired up shortly.`);
         }
 
-        async function handleAnnualSubscription() {
-            await initiateSubscription('annual', 499000, 'Pro Annual');
-        }
-
-        async function initiateSubscription(plan, amount, planName) {
-            try {
-                // Check if user is logged in
-                const token = localStorage.getItem('codesail_token');
-                if (!token) {
-                    // Redirect to GitHub login first
-                    localStorage.setItem('pending_plan', plan);
-                    const loginRes = await fetch(`${BACKEND_URL}/auth/github/login`);
-                    const loginData = await loginRes.json();
-                    window.location.href = loginData.url;
-                    return;
-                }
-
-                // Create subscription on backend
-                const response = await fetch(`${BACKEND_URL}/billing/subscribe`, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
-
-                const data = await response.json();
-
-                // Open Razorpay checkout
-                const options = {
-                    key: RAZORPAY_KEY_ID,
-                    subscription_id: data.subscription_id,
-                    name: 'CodeSail',
-                    description: planName,
-                    image: '⛵',
-                    handler: async function(response) {
-                        // Verify payment on backend
-                        const verifyResponse = await fetch(`${BACKEND_URL}/billing/verify-payment`, {
-                            method: 'POST',
-                            headers: {
-                                'Authorization': `Bearer ${token}`,
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                razorpay_payment_id: response.razorpay_payment_id,
-                                razorpay_subscription_id: response.razorpay_subscription_id,
-                                razorpay_signature: response.razorpay_signature
-                            })
-                        });
-
-                        if (verifyResponse.ok) {
-                            window.location.href = 'success.html';
-                        }
-                    },
-                    prefill: {
-                        name: '',
-                        email: ''
-                    },
-                    theme: { color: '#6366f1' }
-                };
-
-                const rzp = new Razorpay(options);
-                rzp.open();
-
-            } catch (error) {
-                alert('Something went wrong. Please try again.');
-                console.error(error);
-            }
-        }
+        // Render on load
+        renderCards();
     </script>
 
 </body>
