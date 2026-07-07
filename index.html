@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeSail — AI-Powered Developer Tools</title>
-    <meta name="description" content="CodeSail builds AI-powered tools for developers. Start with our VS Code AI coding assistant powered by Claude.">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<!-- Google tag (gtag.js) -->
+<!-- Google Analytics (GA4) — codesail.in/cinnacode.com property -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJ8H9819QR"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -15,240 +9,269 @@
   gtag('js', new Date());
   gtag('config', 'G-RJ8H9819QR');
 </script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinnacode — AI pair programming, priced like electricity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <span class="logo">⛵</span>
-                <span class="brand-name">CodeSail</span>
-            </div>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="nav-links" id="navLinks">
-                <a href="#products">Products</a>
-                <a href="#pricing">Pricing</a>
-                <a href="docs.html">Docs</a>
-                <a href="pricing.html" class="btn-nav">Get Started</a>
-            </div>
+<div class="wrap">
+  <nav class="site-nav">
+    <a href="index.html" class="brand"><span class="brand-mark">⛵</span>Cinnacode</a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#enterprise">Enterprise</a>
+    </div>
+    <a href="register.html" class="nav-cta" id="navCta">Get started</a>
+  </nav>
+</div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">// pay-as-you-go, not a subscription</div>
+    <h1>An AI pair programmer <em>priced like electricity</em>, not rent.</h1>
+    <p>Cinnacode lives in your editor — chat, inline fixes, and one-keystroke edits. Buy credits once, spend them whenever you actually code. No monthly bill for the weeks you don't.</p>
+    <div class="hero-actions">
+      <a href="register.html" class="btn-primary">Create your account</a>
+      <a href="#pricing" class="btn-secondary">See pricing</a>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <div class="ticker">
+    <div><span>200</span> free credits on signup</div>
+    <div><span>28</span> credits per chat message</div>
+    <div><span>6</span> credits per inline completion</div>
+    <div><span>100</span> credits when you connect GitHub</div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="features" id="features">
+    <div class="section-label">// what's aboard</div>
+    <h2>Everything you'd expect from an editor-native AI assistant — nothing you'd expect from a subscription.</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-num">01</span>
+        <h3>Inline diff, gated apply</h3>
+        <p>Every suggestion shows a real diff before it touches your file. Nothing writes to disk until you confirm it.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-num">02</span>
+        <h3>Cmd+K quick edit</h3>
+        <p>Select code, describe the change, and see the diff appear — without leaving your cursor position.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-num">03</span>
+        <h3>@ mention any file</h3>
+        <p>Pull other files into the conversation by name. Cinnacode reads them, not just the one you have open.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-num">04</span>
+        <h3>Slash commands</h3>
+        <p><span class="mono">/fix</span>, <span class="mono">/explain</span>, <span class="mono">/improve</span>, <span class="mono">/test</span>, <span class="mono">/docs</span> — the five things you ask an assistant for most, one keystroke away.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-num">05</span>
+        <h3>Credits, not seats</h3>
+        <p>No per-seat subscription. Buy a pack, use it at your own pace, top up only when you run low.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-num">06</span>
+        <h3>Built for how you already work</h3>
+        <p>Lives in a VS Code sidebar. No new app to learn, no context switch away from your editor.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <section class="pricing" id="pricing">
+    <div class="section-label">// the manifest</div>
+    <h2>Credit packs, priced plainly.</h2>
+    <p class="lead">One credit pack, spent however you like. No expiry, no auto-renewal, no surprise line items.</p>
+
+    <div class="manifest">
+      <div class="manifest-header">
+        <div></div><div>Pack</div><div>Credits</div><div>Price</div><div></div>
+      </div>
+
+      <div class="manifest-row">
+        <div class="seal">1,000<br>CR</div>
+        <div>
+          <h3>Starter</h3>
+          <div class="desc">≈ 35 chat messages — enough to try it properly</div>
         </div>
-    </nav>
+        <div class="manifest-credits">1,000 credits</div>
+        <div class="manifest-price">₹199</div>
+        <button class="manifest-buy" onclick="buyPack('starter', 199, 1000)">Buy pack</button>
+      </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-badge">⚡ Powered by Claude AI</div>
-            <h1 class="hero-title">
-                Code Smarter,<br>
-                Ship Faster
-            </h1>
-            <p class="hero-subtitle">
-                AI-powered developer tools that understand your code, fix your bugs, 
-                and help you build better software — right inside VS Code.
-            </p>
-            <div class="hero-actions">
-                <a href="pricing.html" class="btn-primary">Start Free Trial</a>
-                <a href="#products" class="btn-secondary">See Products →</a>
-            </div>
-            <div class="hero-stats">
-                <div class="stat">
-                    <span class="stat-number">5+</span>
-                    <span class="stat-label">AI Commands</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">Claude</span>
-                    <span class="stat-label">Powered</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">VS Code</span>
-                    <span class="stat-label">Native</span>
-                </div>
-            </div>
+      <div class="manifest-row">
+        <div class="seal">4,000<br>CR</div>
+        <div>
+          <h3>Popular</h3>
+          <div class="desc">≈ 142 chat messages — a steady week or two of use</div>
         </div>
-    </section>
+        <div class="manifest-credits">4,000 credits</div>
+        <div class="manifest-price">₹499</div>
+        <button class="manifest-buy" onclick="buyPack('popular', 499, 4000)">Buy pack</button>
+      </div>
 
-    <!-- Products Section -->
-    <section class="products" id="products">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Products</h2>
-                <p>Everything you need to supercharge your development workflow</p>
-            </div>
-            <div class="products-grid">
-
-                <!-- Product 1: AI Code Assistant -->
-                <div class="product-card featured">
-                    <div class="product-badge">Available Now</div>
-                    <div class="product-icon">🤖</div>
-                    <h3>AI Code Assistant</h3>
-                    <p>A VS Code extension that brings Claude AI directly into your editor. Chat, inline completions, and smart slash commands that understand your actual code.</p>
-                    <ul class="product-features">
-                        <li>✅ Inline code completions as you type</li>
-                        <li>✅ Chat panel with full conversation history</li>
-                        <li>✅ /explain, /fix, /improve, /test, /docs commands</li>
-                        <li>✅ Context-aware — reads your open files</li>
-                        <li>✅ Powered by Claude (Sonnet 4.6)</li>
-                    </ul>
-                    <a href="pricing.html" class="btn-primary">Get Started →</a>
-                </div>
-
-            </div>
+      <div class="manifest-row">
+        <div class="seal">10,000<br>CR</div>
+        <div>
+          <h3>Power</h3>
+          <div class="desc">≈ 357 chat messages — for daily, heavy use</div>
         </div>
-    </section>
+        <div class="manifest-credits">10,000 credits</div>
+        <div class="manifest-price">₹999</div>
+        <button class="manifest-buy" onclick="buyPack('power', 999, 10000)">Buy pack</button>
+      </div>
+    </div>
+    <div class="pricing-note">// prices in INR, inclusive of applicable taxes at checkout</div>
+    <div class="pricing-note" style="margin-top: 6px;">// payments are handled entirely by Razorpay — we never see or store your card details</div>
+    <div class="pricing-note" style="margin-top: 6px;">// by purchasing, you agree to our <a href="terms.html">Terms</a> and <a href="refund.html">Refund Policy</a></div>
+  </section>
+</div>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="container">
-            <div class="section-header">
-                <h2>Why CodeSail?</h2>
-                <p>Built for developers who want AI that actually understands their code</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🧠</div>
-                    <h4>Context-Aware AI</h4>
-                    <p>Claude reads your actual open files — not just what you type. It knows your code structure, language, and selected text.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h4>Instant Completions</h4>
-                    <p>Ghost text suggestions appear as you type, debounced to save costs. Press Tab to accept, keep typing to ignore.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔧</div>
-                    <h4>Smart Slash Commands</h4>
-                    <p>Type /fix and get a complete corrected file. /explain breaks down complex code. /test writes unit tests automatically.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h4>Secure by Default</h4>
-                    <p>Login with GitHub. Your API key never leaves our server. All calls are authenticated and encrypted.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💬</div>
-                    <h4>Persistent Chat</h4>
-                    <p>Conversation history survives window switches. Claude remembers your entire session context.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📋</div>
-                    <h4>One-Click Copy</h4>
-                    <p>Every code block has a Copy button. Get fixed code into your editor in two clicks — no manual selection needed.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="wrap">
+  <section class="enterprise" id="enterprise">
+    <div class="section-label">// for teams</div>
+    <div class="enterprise-box">
+      <div>
+        <h3>Running a team on Cinnacode?</h3>
+        <p>We're building dedicated multi-seat billing for organizations. Tell us what your team needs and we'll set up a plan directly.</p>
+      </div>
+      <a href="mailto:sailendrags@gmail.com?subject=Cinnacode%20for%20Enterprise&body=Company%20name%3A%0ATeam%20size%3A%0AWhat%20we're%20looking%20for%3A" class="btn-harbor">Contact us →</a>
+    </div>
+  </section>
+</div>
 
-    <!-- Pricing Preview -->
-    <section class="pricing-preview" id="pricing">
-        <div class="container">
-            <div class="section-header">
-                <h2>Simple, Transparent Pricing</h2>
-                <p>Start free, upgrade when you're ready</p>
-            </div>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>Free</h3>
-                    <div class="price">₹0<span>/month</span></div>
-                    <ul>
-                        <li>✅ 50 chat messages/month</li>
-                        <li>✅ 100 inline completions/month</li>
-                        <li>✅ All slash commands</li>
-                        <li>✅ GitHub login</li>
-                        <li>❌ Priority responses</li>
-                        <li>❌ Unlimited usage</li>
-                    </ul>
-                    <a href="pricing.html" class="btn-secondary">Get Started Free</a>
-                </div>
-                <div class="pricing-card featured">
-                    <div class="popular-badge">Most Popular</div>
-                    <h3>Pro</h3>
-                    <div class="price">₹499<span>/month</span></div>
-                    <ul>
-                        <li>✅ Unlimited chat messages</li>
-                        <li>✅ Unlimited completions</li>
-                        <li>✅ All slash commands</li>
-                        <li>✅ Priority responses</li>
-                        <li>✅ Multi-file context (coming soon)</li>
-                        <li>✅ Priority support</li>
-                    </ul>
-                    <a href="pricing.html" class="btn-primary">Start Pro Trial</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="wrap">
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="brand"><span class="brand-mark">⛵</span>Cinnacode</div>
+      <div class="footer-links">
+        <a href="terms.html">Terms & Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="refund.html">Refund Policy</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>Cinnacode — an AI coding assistant</div>
+      <div>© 2026</div>
+    </div>
+  </footer>
+</div>
 
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <h2>Ready to code smarter?</h2>
-            <p>Join developers who use CodeSail to write better code, faster.</p>
-            <div class="cta-actions">
-                <a href="pricing.html" class="btn-primary">Get Started Free</a>
-                <a href="docs.html" class="btn-secondary-light">Read the Docs</a>
-            </div>
-        </div>
-    </section>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+  const BACKEND_URL = 'https://sail-backend-production-154d.up.railway.app';
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="nav-brand">
-                        <span class="logo">⛵</span>
-                        <span class="brand-name">CodeSail</span>
-                    </div>
-                    <p>AI-powered developer tools built for modern software teams.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Products</h4>
-                    <a href="pricing.html">AI Code Assistant</a>
-                </div>
-               <div class="footer-links">
-                    <h4>Resources</h4>
-                    <a href="docs.html">Documentation</a>
-                    <a href="mailto:hello@codesail.in">Support</a>
-                </div>
-                <div class="footer-links">
-                    <h4>Company</h4>
-                    <a href="mailto:hello@codesail.in">Contact</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-    <p>© 2026 CodeSail. All rights reserved.</p>
-    <p>
-        <a href="privacy.html">Privacy Policy</a> · 
-        <a href="terms.html">Terms of Service</a> · 
-        <a href="aup.html">Acceptable Use</a>
-    </p>
-                <p>Built with ❤️ for developers</p>
-            </div>
-        </div>
-    </footer>
+  // If the visitor registered before, their token is saved in localStorage —
+  // recognize them and change the nav button accordingly.
+  const savedToken = localStorage.getItem('cinnacode_token');
+  if (savedToken) {
+    document.getElementById('navCta').textContent = 'My account';
+  }
 
-    <script>
-        const navToggle = document.getElementById('navToggle');
-        const navLinks = document.getElementById('navLinks');
+  // ── Razorpay checkout flow ──────────────────────────────────────────────
+  // IMPORTANT: this calls /billing/create-order and /billing/verify-payment
+  // with an ASSUMED request/response shape, since billing.py wasn't
+  // available when this was written. Before going live, confirm these
+  // endpoint names and payloads actually match billing.py, and adjust here
+  // if they differ.
+  async function buyPack(packId, priceInRupees, credits) {
+    const token = localStorage.getItem('cinnacode_token');
 
-        navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('open');
-            navLinks.classList.toggle('open');
-        });
+    if (!token) {
+      alert('Please create an account or log in first — redirecting you to sign up.');
+      window.location.href = 'register.html';
+      return;
+    }
 
-        // Close menu when a link is clicked
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navToggle.classList.remove('open');
-                navLinks.classList.remove('open');
+    try {
+      // Step 1: ask our backend to create a Razorpay order server-side
+      // (this is where the actual Razorpay key_secret is used — never
+      // exposed to the browser)
+      const orderResponse = await fetch(`${BACKEND_URL}/billing/create-order`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          pack_id: packId,
+          amount_inr: priceInRupees,
+          credits: credits
+        })
+      });
+
+      if (!orderResponse.ok) {
+        throw new Error('Could not start checkout. Please try again.');
+      }
+
+      const order = await orderResponse.json();
+      // Expected shape: { order_id, key_id, amount, currency }
+
+      // Step 2: open Razorpay's hosted checkout modal — card/UPI/etc.
+      // entry happens entirely inside Razorpay's own iframe, never touching
+      // this page's DOM or our servers.
+      const options = {
+        key: order.key_id,
+        amount: order.amount,
+        currency: order.currency || 'INR',
+        name: 'Cinnacode',
+        description: `${packId} pack — ${credits} credits`,
+        order_id: order.order_id,
+        handler: async function (response) {
+          // Step 3: send the payment confirmation back to our backend for
+          // signature verification — this is what actually credits the
+          // account, not the client-side success callback alone.
+          try {
+            const verifyResponse = await fetch(`${BACKEND_URL}/billing/verify-payment`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature
+              })
             });
-        });
-    </script>
+
+            if (!verifyResponse.ok) {
+              throw new Error('Payment verification failed. Contact support if you were charged.');
+            }
+
+            const result = await verifyResponse.json();
+            alert(`Success! ${credits} credits added. New balance: ${result.credits_balance}`);
+
+          } catch (err) {
+            alert(err.message);
+          }
+        },
+        theme: { color: '#9C4A1F' }
+      };
+
+      const razorpayCheckout = new Razorpay(options);
+      razorpayCheckout.open();
+
+    } catch (err) {
+      alert(err.message || 'Something went wrong starting checkout.');
+    }
+  }
+</script>
+
 </body>
 </html>
